@@ -57,6 +57,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void addNewContact() {
+
     click(By.linkText("add new"));
   }
 
@@ -67,4 +68,21 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+  public void selectContact() {
+    click(By.name("selected[]"));
+
+  }
+
+  public void deleteSelectedContact() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void submitContactDeletion() {
+    wd.switchTo().alert().accept();
+    wd.findElement(By.cssSelector("div.msgbox"));
+
+  }
+
+
 }
+
