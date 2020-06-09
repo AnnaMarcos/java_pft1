@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook;
 
-
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
