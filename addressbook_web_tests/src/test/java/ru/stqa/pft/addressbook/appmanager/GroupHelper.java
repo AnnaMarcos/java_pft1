@@ -12,61 +12,67 @@ public class GroupHelper {
   }
 
   public void returnToGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
+    click(By.linkText("groups"));
   }
 
   public void submitGroupCreation() {
-    wd.findElement(By.name("submit")).click();
+    click(By.name("submit"));
+  }
+
+  private void click(By locator) {
+    wd.findElement(locator).click();
   }
 
   public void fillGroupForm(ru.stqa.pft.addressbook.model.ContactData.GroupData groupData) {
-    wd.findElement(By.name("group_name")).click();
-    wd.findElement(By.name("group_name")).clear();
-    wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    type(By.name("group_name"), groupData.getName());
+    type(By.name("group_header"), groupData.getHeader());
+    type(By.name("group_footer"), groupData.getFooter());
+  }
+
+  private void type(By locator, String text) {
+    click(locator);
+    wd.findElement(locator).clear();
+    wd.findElement(locator).sendKeys(text);
   }
 
   public void initGroupCreation() {
-    wd.findElement(By.name("new")).click();
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroup() {
 
-    wd.findElement(By.name("delete")).click();
+    click(By.name("delete"));
   }
 
   public void selectGroup() {
 
-    wd.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 
   public void returnToHomePage() {
 
-    wd.findElement(By.linkText("home")).click();
+    click(By.linkText("home"));
   }
 
   public void submitContactForm() {
 
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
   public void fiiContactForm(GroupData.ContactData contactData) {
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getCellPhone());
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+    type("firstname", contactData.getFirstName());
+    type("lastname", contactData.getLastName());
+    type("address", contactData.getAddress());
+    type("mobile", contactData.getCellPhone());
+    type("email", contactData.getEmail());
+  }
+
+  private void type(String firstname, String firstName) {
+    wd.findElement(By.name(firstname)).clear();
+    wd.findElement(By.name(firstname)).sendKeys(firstName);
   }
 
   public void addNewContact() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 }
