@@ -84,5 +84,13 @@ public class GroupHelper extends HelperBase {
   }
 
 
+  public void editContact() {
+    click(By.xpath("//img[@alt='Edit']"));
+
+  }
+
+  public void submitContactUpdate() {
+    click(By.xpath("(//input[@name='update'])[2]"));
+  }
 }
 
