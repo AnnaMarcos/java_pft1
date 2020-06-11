@@ -10,7 +10,7 @@ public class ContactModificationTests  extends TestBase {
     app.getGroupHelper().editContact();
     app.getGroupHelper().fiiContactForm(new GroupData.ContactData("Anuta", "Ivanova", "25803 Anderson Ln", "818-430-6311", "annasilantyeva@yahoo.com", null), false);
     app.getGroupHelper().submitContactUpdate();
-    app.getGroupHelper().returnToHomePage();
+    app.getGroupHelper().gotoHomepage();
   }
 
 }

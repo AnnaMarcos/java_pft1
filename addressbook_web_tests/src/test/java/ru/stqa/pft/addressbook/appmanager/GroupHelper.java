@@ -40,10 +40,6 @@ public class GroupHelper extends HelperBase {
     click(By.name("selected[]"));
   }
 
-  public void returnToHomePage() {
-
-    click(By.linkText("home"));
-  }
 
   public void submitContactForm() {
 
@@ -103,6 +99,10 @@ public class GroupHelper extends HelperBase {
 
   public void submitContactUpdate() {
     click(By.xpath("(//input[@name='update'])[2]"));
+  }
+
+  public void gotoHomepage() {
+    click(By.linkText("home"));
   }
 }
 
