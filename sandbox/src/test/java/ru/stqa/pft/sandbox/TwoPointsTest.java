@@ -11,9 +11,6 @@ package ru.stqa.pft.sandbox;
       Point p2 = new Point(5,0);
       Assert.assertEquals((p1.distance(p2)), 5);
 
-
-
-
     }
   }
 

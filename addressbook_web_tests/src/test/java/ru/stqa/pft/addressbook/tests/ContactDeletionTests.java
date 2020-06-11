@@ -10,12 +10,5 @@ public class ContactDeletionTests extends TestBase  {
     app.getGroupHelper().submitContactDeletion();
     app.getNavigationHelper().gotoHomePage();
 
-
-
-
-
-
-
-
   }
 }
