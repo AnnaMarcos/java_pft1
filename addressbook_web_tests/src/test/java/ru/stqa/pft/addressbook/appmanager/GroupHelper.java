@@ -59,10 +59,10 @@ public class GroupHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-    }
-    //drop down menu
-   // if (isElementPresent(By.name("new_group"))) {
-     // new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup()); }
+  }
+  //drop down menu
+  // if (isElementPresent(By.name("new_group"))) {
+  // new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup()); }
 
 
   public void addNewContact() {
@@ -77,6 +77,7 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+
   public void selectContact() {
     click(By.name("selected[]"));
 
@@ -88,7 +89,7 @@ public class GroupHelper extends HelperBase {
 
   public void submitContactDeletion() {
     wd.switchTo().alert().accept();
-    wd.findElement(By.cssSelector("div.msgbox"));
+    wd.findElement(By.xpath("//input[@value='Delete']"));
 
   }
 
@@ -116,6 +117,20 @@ public class GroupHelper extends HelperBase {
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
+
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//td/input"));
+
+  }
+
+  public void createContact(GroupData.ContactData table, boolean b) {
+    addNewContact();
+    fiiContactForm(table, true);
+    submitContactForm();
+    gotoHomepage();
+  }
+
 }
 
 
