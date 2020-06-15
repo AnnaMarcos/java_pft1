@@ -14,7 +14,7 @@ public class GroupDeletionTest extends TestBase {
   public void testGroupDeletion() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
     if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper(). createGroup( new ContactData.GroupData("test1", "test4", "test5"));
+      app.getGroupHelper(). createGroup( new GroupData("test1", "test4", "test5"));
     }
     List<GroupData> before = app.getGroupHelper().getGroupList();
     //int before = app.getGroupHelper().getGroupCount();//added verification: number of groups before deletion new one

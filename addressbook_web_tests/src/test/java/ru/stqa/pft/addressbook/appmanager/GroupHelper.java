@@ -25,7 +25,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void fillGroupForm(ru.stqa.pft.addressbook.model.ContactData.GroupData groupData) {
+  public void fillGroupForm(ru.stqa.pft.addressbook.model.GroupData groupData) {
     type(By.name("group_name"), groupData.getName());
     type(By.name("group_header"), groupData.getHeader());
     type(By.name("group_footer"), groupData.getFooter());
@@ -53,7 +53,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createGroup(ContactData.GroupData group) {
+  public void createGroup(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
@@ -67,6 +67,18 @@ public class GroupHelper extends HelperBase {
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
+  public List<GroupData> getGroupList() {
+    List<GroupData>groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements)
+    {
+      String name = element.getText();
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      GroupData group = new GroupData(id, name, null, null);
+      groups.add(group);
+    }
+    return groups;
+  }
 
 
 // ContactHelper
@@ -76,7 +88,7 @@ public class GroupHelper extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void fiiContactForm(GroupData.ContactData contactData, boolean creation) {
+  public void fiiContactForm(ContactData contactData, boolean creation) {
     type("firstname", contactData.getFirstName());
     type("lastname", contactData.getLastName());
     type("address", contactData.getAddress());
@@ -135,7 +147,7 @@ public class GroupHelper extends HelperBase {
 
   }
 
-  public void createContact(GroupData.ContactData table, boolean b) {
+  public void createContact(ContactData table, boolean b) {
     addNewContact();
     fiiContactForm(table, true);
     submitContactForm();
@@ -147,17 +159,7 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
-    List<GroupData>groups = new ArrayList<GroupData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element : elements)
-    {
-      String name = element.getText();
-      GroupData group = new GroupData(name, null, null);
-      groups.add(group);
-    }
-    return groups;
-  }
+
 }
 
 
