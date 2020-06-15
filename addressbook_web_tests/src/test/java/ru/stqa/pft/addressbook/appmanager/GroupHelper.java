@@ -36,10 +36,11 @@ public class GroupHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void selectGroup() {
-
-    click(By.name("selected[]"));
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+    //click(By.name("selected[]"));
   }
+
   public void initGroupModification() {
     click(By.name("edit"));
   }
@@ -47,6 +48,7 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+
   public void createGroup(ContactData.GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
@@ -56,6 +58,10 @@ public class GroupHelper extends HelperBase {
 
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 
 
@@ -90,7 +96,6 @@ public class GroupHelper extends HelperBase {
   }
 
 
-
   public void selectContact() {
     click(By.name("selected[]"));
 
@@ -117,9 +122,8 @@ public class GroupHelper extends HelperBase {
   }
 
   public void gotoHomepage() {
-    click(By.linkText("home"));
+    click(By.xpath("//div[@id='nav']/ul/li/a"));
   }
-
 
 
   public boolean isThereAContact() {
@@ -134,6 +138,11 @@ public class GroupHelper extends HelperBase {
     gotoHomepage();
   }
 
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
+
 
 
