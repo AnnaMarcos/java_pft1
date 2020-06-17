@@ -13,6 +13,8 @@ import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
+
+
   public GroupHelper(WebDriver wd) {
     super(wd);
   }
@@ -87,8 +89,11 @@ public class GroupHelper extends HelperBase {
 
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
+  public boolean creation;
 
   public void fiiContactForm(ContactData contactData, boolean creation) {
+
+    this.creation = creation;
     type("firstname", contactData.getFirstName());
     type("lastname", contactData.getLastName());
     type("address", contactData.getAddress());
@@ -96,9 +101,9 @@ public class GroupHelper extends HelperBase {
     type("email", contactData.getEmail());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      new Select(wd.findElement(By.xpath("//select[@name='new_group']"))).selectByVisibleText(contactData.getGroup());
     } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    Assert.assertFalse(isElementPresent(By.xpath("//select[@name='new_group']")));
     }
   }
   //drop down menu
@@ -149,7 +154,7 @@ public class GroupHelper extends HelperBase {
 
   public void createContact(ContactData table, boolean b) {
     addNewContact();
-    fiiContactForm(table, true);
+    fiiContactForm(table, b);
     submitContactForm();
     gotoHomepage();
   }
