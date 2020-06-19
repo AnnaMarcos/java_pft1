@@ -46,6 +46,9 @@ public class GroupHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
     //click(By.name("selected[]"));
   }
+  //public void selectGroup() {
+    //click(By.name("selected[]"));
+  //}
 
   public void initGroupModification() {
     click(By.name("edit"));
@@ -69,14 +72,14 @@ public class GroupHelper extends HelperBase {
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
+
   public List<GroupData> getGroupList() {
     List<GroupData>groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element : elements)
-    {
+    for (WebElement element : elements){
       String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); // Convert string to number "Integer.parseInt()"
-      GroupData group = new GroupData(id, name, null, null);
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));// Convert string to number "Integer.parseInt()"
+      GroupData group = new GroupData( id, name, null, null);
       groups.add(group);
     }
     return groups;
@@ -101,7 +104,7 @@ public class GroupHelper extends HelperBase {
     type("email", contactData.getEmail());
 
     if (creation) {
-      new Select(wd.findElement(By.xpath("//select[@name='new_group']"))).selectByVisibleText(contactData.getGroup());
+      new Select(wd.findElement(By.xpath("//select[@name='new_group']")));
     } else {
     Assert.assertFalse(isElementPresent(By.xpath("//select[@name='new_group']")));
     }
@@ -162,9 +165,9 @@ public class GroupHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+
+
   }
-
-
 }
 
 
