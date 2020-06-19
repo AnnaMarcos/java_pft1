@@ -14,7 +14,7 @@ public class ContactModificationTests  extends TestBase {
       app.getGroupHelper().createContact(new ContactData("Anna", "Marcos", "2580s Anderson Ln", "818-430-6300", "annasilantyeva@gmail.com", "test1"), true);
     }
     int before = app.getGroupHelper().getContactCount();
-    app.getGroupHelper().editContact();
+    app.getGroupHelper().editContact(before - 1);
     app.getGroupHelper().fiiContactForm(new ContactData("Anuta", "Ivanova", "25803 Anderson Ln", "818-430-6311", "annasilantyeva@yahoo.com", null), false);
     app.getGroupHelper().submitContactUpdate();
     app.getGroupHelper().gotoHomepage();
