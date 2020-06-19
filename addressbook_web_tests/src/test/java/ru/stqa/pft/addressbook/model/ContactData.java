@@ -41,11 +41,5 @@ public class ContactData {
     return group;
   }
 
-  public static class GroupData {
-    private  String name;
-    private  String header;
-    private  String footer;
 
-
-  }
 }

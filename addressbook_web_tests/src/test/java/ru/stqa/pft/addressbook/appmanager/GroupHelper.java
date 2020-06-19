@@ -170,6 +170,18 @@ public class GroupHelper extends HelperBase {
 
 
   }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement>elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements)  {
+      String name1 = element.getText();
+      ContactData contact = new ContactData (name1,null,null,null, null, null);
+      contacts.add (contact);
+    }
+    return contacts;
+
+  }
 }
 
 
