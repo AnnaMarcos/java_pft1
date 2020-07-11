@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook.test;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
@@ -17,8 +17,6 @@ public class TestBase {
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     app.stop();
-
   }
-
 
 }
