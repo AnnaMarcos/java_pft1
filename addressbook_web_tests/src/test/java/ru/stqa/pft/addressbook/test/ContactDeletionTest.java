@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.test;
 
 import org.testng.annotations.*;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactDeletionTest extends TestBase{
 
@@ -8,6 +9,10 @@ public class ContactDeletionTest extends TestBase{
   @Test
   public void testContactDeletion() throws Exception {
 
+    if (!app.getContactHelper().isThereAContact()){
+      app.getContactHelper().createContact(new ContactData("Christian", "Silantyev",
+              "25803 Anderson Ln", "8184306300", "annasilantyeva@gmail.com","Test1"),true);
+    }
     app.getNavigationHelper().returnToHomePage();
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteSelectedContact();

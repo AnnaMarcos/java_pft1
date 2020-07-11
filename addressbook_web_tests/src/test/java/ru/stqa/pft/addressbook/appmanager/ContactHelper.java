@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectContact() {
-    click(By.xpath("//td/input"));
+    click(By.name("selected[]"));
   }
 
   public void initContactModification() {
@@ -54,5 +54,17 @@ public class ContactHelper extends HelperBase{
 
   public void submitContactUpdate() {
     click(By.name("update"));
+  }
+
+  public void createContact(ContactData contact, boolean b) {
+    initContactCreation();
+    fillContactForm(contact,true);
+    submitContactCreation();
+
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
