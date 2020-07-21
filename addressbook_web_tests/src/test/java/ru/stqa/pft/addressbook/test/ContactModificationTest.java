@@ -17,7 +17,7 @@ public class ContactModificationTest extends TestBase {
               "25803 Anderson Ln", "8184306300", "annasilantyeva@gmail.com","Test1"),true);
     }
     app.getNavigationHelper().returnToHomePage();
-    app.getContactHelper().initContactModification();
+    app.getContactHelper().initContactModification(before -1);
     app.getContactHelper().fillContactForm(new ContactData("Anna", "Marcos",
             "25804 Anderson Ln", "818-111-22-33", "annasilantyeva@me.com", null),false);
     app.getContactHelper().submitContactUpdate();
