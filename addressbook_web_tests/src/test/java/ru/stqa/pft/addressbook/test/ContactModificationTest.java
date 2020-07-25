@@ -4,6 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class ContactModificationTest extends TestBase {
 
 
@@ -12,20 +15,25 @@ public class ContactModificationTest extends TestBase {
   public void testContactModification() {
     app.getNavigationHelper().returnToHomePage();
     if (!app.getContactHelper().isThereAContact()){
-      app.getContactHelper().createContact(new ContactData("Christian", "Silantyev",
+      app.getContactHelper().createContact(new ContactData( "Silantyev", "Christian",
               "25803 Anderson Ln", "8184306300", "annasilantyeva@gmail.com","Test1"),true);
     }
-    int before = app.getContactHelper().getContactCount();
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().returnToHomePage();
-    app.getContactHelper().initContactModification(before -1);
-    app.getContactHelper().fillContactForm(new ContactData("Anna", "Marcos",
-            "25804 Anderson Ln", "818-111-22-33", "annasilantyeva@me.com", null),false);
+    app.getContactHelper().initContactModification(before.size() -1);
+    ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "Marcos","Anna",
+            "25804 Anderson Ln", "818-111-22-33", "annasilantyeva@me.com", null);
+    app.getContactHelper().fillContactForm (contact, false);
     app.getContactHelper().submitContactUpdate();
     app.getNavigationHelper().returnToHomePage();
-    int after = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after,before );
-    app.getSessionHelper().logout();
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(),before.size() );
 
+    before.remove(before.size() -1);
+    before.add(contact);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>( after));// Set/Unordered collections/
+
+    app.getSessionHelper().logout();
 
   }
 }
