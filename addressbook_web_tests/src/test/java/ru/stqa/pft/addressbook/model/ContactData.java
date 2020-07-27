@@ -5,38 +5,13 @@ import java.util.Objects;
 public class ContactData {
 
 
-  private  int id;
-  private final String fName;
-  private final String lName;
-  private final String address;
-  private final String cellPhone;
-  private final String email;
-
-  private String group;
-
-
-
-  public ContactData(String lName, String fName, String address, String cellPhone, String email, String group) {
-    this.id =  Integer.MAX_VALUE ;
-    this.fName = fName;
-    this.lName = lName;
-    this.address = address;
-    this.cellPhone = cellPhone;
-    this.email = email;
-    this.group = group;
-  }
-
-  public ContactData(int id, String lName, String fName,  String address, String cellPhone, String email, String group) {
-    this.id =  id;
-    this.fName = fName;
-    this.lName = lName;
-    this.address = address;
-    this.cellPhone = cellPhone;
-    this.email = email;
-    this.group = group;
-  }
-
-
+  private  int id = Integer.MAX_VALUE ;
+  private  String fName;
+  private  String lName;
+  private  String address;
+  private  String cellPhone;
+  private  String email;
+  private  String group;
 
 
   public int getId() {
@@ -66,8 +41,39 @@ public class ContactData {
     return group;
   }
 
-  public void setId(int id) {
+  public ContactData withId (int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withfName (String fName) {
+    this.fName = fName;
+    return this;
+  }
+
+  public ContactData withlName(String lName) {
+    this.lName = lName;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withCellPhone(String cellPhone) {
+    this.cellPhone = cellPhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   @Override
