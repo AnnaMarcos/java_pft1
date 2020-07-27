@@ -60,12 +60,32 @@ public class ContactHelper extends HelperBase{
     click(By.name("update"));
   }
 
+  public void returnToHomePage() {
+    if (isElementPresent (By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
   public void createContact(ContactData contact, boolean b) {
     initContactCreation();
     fillContactForm(contact,true);
     submitContactCreation();
 
-
+  }
+  public void modifyContact(int index, ContactData contact) {
+    returnToHomePage();
+    initContactModification(index);
+    fillContactForm (contact, false);
+    submitContactUpdate();
+    returnToHomePage();
+  }
+  public void deleteContact(int index) {
+    returnToHomePage();
+    selectContact(index);
+    deleteSelectedContact();
+    verifyContactDeletion();
+    returnToHomePage();
   }
 
   public boolean isThereAContact() {
