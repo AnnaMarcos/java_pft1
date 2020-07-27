@@ -28,7 +28,7 @@ public class ContactDeletionTest extends TestBase{
     before.remove(before.size() -1);
     Assert.assertEquals(before, after);
 
-    app.getSessionHelper().logout();
+
 
 
 

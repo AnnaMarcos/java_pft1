@@ -20,7 +20,6 @@ public class ContactCreationTest extends TestBase {
     app.getNavigationHelper().returnToHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(),before.size() + 1);
-    app.getSessionHelper().logout();
 
     before.add (contact);
     Comparator<? super ContactData> byId = (o1 , o2) -> Integer.compare(o1.getId(),o2.getId());

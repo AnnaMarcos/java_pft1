@@ -37,7 +37,7 @@ public class ContactModificationTest extends TestBase {
     after.sort(byId);
     Assert.assertEquals(before,after);
 
-    app.getSessionHelper().logout();
+
 
   }
 }
