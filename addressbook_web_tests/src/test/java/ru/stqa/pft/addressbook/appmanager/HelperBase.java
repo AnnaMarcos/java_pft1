@@ -24,11 +24,11 @@ public class HelperBase {
     }
   }
 
-  public boolean isAlertPresent() {
+  public boolean isAlertPresent(By locator) {
     try {
       wd.switchTo().alert();
       return true;
-    } catch (NoAlertPresentException e) {
+    } catch (NoAlertPresentException ex) {
       return false;
     }
   }
