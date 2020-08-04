@@ -33,22 +33,23 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    MatcherAssert.assertThat(contact.getlPhone(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getlPhone())));
+    /*MatcherAssert.assertThat(contact.getlPhone(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getlPhone())));
     MatcherAssert.assertThat(contact.getCellPhone(), equalTo(cleaned(contactInfoFromEditForm.getCellPhone())));
     MatcherAssert.assertThat(contact.getwPhone(), equalTo(cleaned(contactInfoFromEditForm.getwPhone())));
-   /* assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    */
+
+    MatcherAssert.assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
   }
   private String mergePhones(ContactData contact) {
-    return  Arrays.asList(contact.getHome(),contact.getMobile(),contact.getWork())
+    return  Arrays.asList(contact.getlPhone(),contact.getCellPhone(),contact.getwPhone())
             .stream().filter((s) -> !s.equals(""))
             .map(ContactPhoneTests::cleaned)
             .collect(Collectors.joining("\n"));
 
-    */
   }
 
 
-  public String cleaned (String phone){
+  public static String cleaned (String phone){
     return phone.replaceAll("\\s","").replaceAll("[- ()]","");
   }
 }

@@ -15,7 +15,14 @@ public class ContactData {
   private  String wPhone;
   private  String allPhones;
 
+
+
+
   public ContactData() {
+  }
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
   }
   public ContactData withId (int id) {
     this.id = id;
@@ -77,13 +84,13 @@ public class ContactData {
     this.address = null;
     this.group = null;
   }
+  public String getAllPhones() {
+    return allPhones;
+  }
+
 
   public int getId() {
     return id;
-  }
-
-  public String getallPhones() {
-    return allPhones;
   }
 
   public String getlPhone() {

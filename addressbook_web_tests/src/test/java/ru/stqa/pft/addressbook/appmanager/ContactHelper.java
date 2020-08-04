@@ -131,11 +131,11 @@ public class ContactHelper extends HelperBase {
       String lName = cells.get(1).getText();
       String fName = cells.get(2).getText();
       String address = cells.get(3).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allPhones = cells.get(5).getText();
 
 
       ContactData contact = new ContactData().withId(id).withfName(fName).withlName(lName)
-              .withAddress(address).withlPhone(phones[0]).withCellPhone(phones[1]).withwPhone(phones[2]);
+              .withAddress(address).withallPhones(allPhones);
       contactCache.add(contact);
     }
     return new Contacts(contactCache);
