@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class ContactData {
 
+
   private  int id = Integer.MAX_VALUE ;
   private  String fName;
   private  String lName;
@@ -14,11 +15,40 @@ public class ContactData {
   private  String lPhone;
   private  String wPhone;
   private  String allPhones;
+  private  String allEmails;
+  private  String email1;
+  private  String email2;
+  private  String email3;
+  private  String allAddresses;
+  private  String companyAddress;
 
+  public ContactData withAllAddresses(String allAddresses) {
+    this.allAddresses = allAddresses;
+    return  this;
+  }
 
-
+  public ContactData withCompanyAddress(String companyAddress) {
+    this.companyAddress = companyAddress;
+    return this;
+  }
 
   public ContactData() {
+  }
+  public ContactData withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+  public ContactData withAllEmails (String allEmails) {
+    this.allEmails = allEmails;
+    return this;
   }
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -80,14 +110,35 @@ public class ContactData {
     this.lPhone = lPhone;
     this.cellPhone = cellPhone;
     this.wPhone = wPhone;
-    this.email = null;
+    this.email1 = null;
+    this.email2 = null;
+    this.email3 = null;
     this.address = null;
+    this.companyAddress = null;
+    this.allAddresses = null;
     this.group = null;
+  }
+  public String getCompanyAddress() {
+    return companyAddress;
+  }
+  public String getAllAddresses() {
+    return allAddresses;
+  }
+  public String getEmail3() {
+    return email3;
+  }
+  public String getEmail1() {
+    return email1;
+  }
+  public String getEmail2() {
+    return email2;
+  }
+  public String getAllEmails() {
+    return allEmails;
   }
   public String getAllPhones() {
     return allPhones;
   }
-
 
   public int getId() {
     return id;
@@ -154,4 +205,6 @@ public class ContactData {
   public int hashCode() {
     return Objects.hash(id, fName, lName);
   }
+
+
 }
