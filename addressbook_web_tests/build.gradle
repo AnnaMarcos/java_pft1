@@ -11,4 +11,6 @@ dependencies {
 
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
 
+    implementation 'com.beust:jcommander:1.78'
+
 }
