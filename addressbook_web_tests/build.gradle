@@ -4,7 +4,7 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
+  dependencies {
     implementation 'org.testng:testng:7.1.0'
 
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
@@ -13,4 +13,5 @@ dependencies {
 
     implementation 'com.beust:jcommander:1.78'
 
+    implementation 'com.thoughtworks.xstream:xstream:1.4.12'
 }

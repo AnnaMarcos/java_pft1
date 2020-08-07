@@ -75,6 +75,19 @@ public class GroupHelper extends HelperBase{
     return  isElementPresent(By.name("selected[]"));
   }
 
+  public String defaultNameGroup() {
+    String defaultNameGroup;
+    if (all().size() == 0) {
+      create(new GroupData().withName("test"));
+      return defaultNameGroup = "test";
+    }
+    else {
+      return defaultNameGroup = all().iterator().next().getName();
+    }
+  }
+
+
+
   public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
