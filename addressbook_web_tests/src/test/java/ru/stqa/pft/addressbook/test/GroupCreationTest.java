@@ -20,19 +20,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
 
-  @Test
-  public void testGroupCreation() throws Exception {
-    app.goTo().groupPage();
-    Groups before = app.group().all();
-    GroupData group = new GroupData().withName("Test4");
-    app.group().create(group);
-    app.goTo().groupPage();
-    assertThat(app.group().count(), equalTo(before.size() + 1));
-    Groups after = app.group().all();
-    assertThat (after, equalTo(before.withAdded
-            (group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+  @DataProvider
+  public Iterator<Object[]>validGroups() {
+    List<Object[]> list = new ArrayList<Object[]>();
+    list.add (new Object[] { new GroupData().withName("Test 1").withHeader("Header 1").withFooter("Footer 1")});
+    list.add (new Object[] { new GroupData().withName("Test 2").withHeader("Header 2").withFooter("Footer 2")});
+    list.add (new Object[] { new GroupData().withName("Test 3").withHeader("Header 3").withFooter("Footer 3")});
+    return list.iterator();
+  }
 
-
+  @Test (dataProvider = "validGroups")
+  public void testGroupCreation(GroupData group) throws Exception {
+      app.goTo().groupPage();
+      Groups before = app.group().all();
+      app.group().create(group);
+      app.goTo().groupPage();
+      assertThat(app.group().count(), equalTo(before.size() + 1));
+      Groups after = app.group().all();
+      assertThat(after, equalTo(before.withAdded
+              (group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
     @Test
