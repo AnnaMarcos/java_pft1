@@ -18,13 +18,31 @@ import java.util.List;
 
 public class GroupDataGenerator  {
 
+  @Parameter (names = "-c", description = "Group count" )
+  public int count;
+
+
+  @Parameter (names = "-f", description = "Target file" )
+  public String file;
+
+
+
   public static void main(String[] args) throws IOException {
-    int count = Integer.parseInt(args[0]);
-    File file = new File(args[1]);
+    GroupDataGenerator generator = new GroupDataGenerator();
+    JCommander jCommander = new JCommander(generator);
+    try {
+      jCommander.parse(args);
+    } catch (ParameterException ex) {
+      jCommander.usage();
+      return;
+    }
+    generator.run();
+    
+  }
 
+  private void run() throws IOException {
     List<GroupData> groups  = generatorGroups(count);
-    save(groups, file);
-
+    save(groups, new File(file));
 
   }
 
