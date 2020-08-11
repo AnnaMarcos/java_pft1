@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,17 +21,17 @@ import static org.hamcrest.MatcherAssert.*;
 public class ContactCreationTest extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]>validContact() {
+  public Iterator<Object[]>validContact() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new ContactData().withlName("Marcos 1").withfName("Anna 1").withAddress("25803 Anderson Ln 1")
-            .withlPhone("818-444-55-66 1").withCellPhone("8184306300 1").withwPhone("818-555-66-77 1")
-            .withEmail("annasilantyeva@gmail.com 1")});
-    list.add(new Object[]{new ContactData().withlName("Marcos 2").withfName("Anna 2").withAddress("25803 Anderson Ln 2")
-            .withlPhone("818-444-55-66 2").withCellPhone("8184306300 2").withwPhone("818-555-66-77 2")
-            .withEmail("annasilantyeva@gmail.com 2")});
-    list.add(new Object[]{new ContactData().withlName("Marcos 3").withfName("Anna 3").withAddress("25803 Anderson Ln 3")
-            .withlPhone("818-444-55-66 3").withCellPhone("8184306300 3").withwPhone("818-555-66-77 3")
-            .withEmail("annasilantyeva@gmail.com 3")});
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+    String line = reader.readLine();
+    while (line != null) {
+      String[] split = line.split(";");
+      list.add(new Object[]{new ContactData().withlName(split[0]).withfName(split[1]).withAddress(split[2])
+              .withlPhone(split[3]).withCellPhone(split[4]).withwPhone(split[5]).withEmail(split[6])});
+      line = reader.readLine();
+    }
+
     return list.iterator();
   }
 
@@ -39,6 +39,7 @@ public class ContactCreationTest extends TestBase {
   public void testContactCreation(ContactData contact) {
     app.contact().home();
     Contacts before = app.contact().all();
+    File photo = new File("src/test/resources/cat.jpg");
     app.contact().create(contact,true);
     app.contact().home();
     assertThat(app.contact().count(), equalTo(before.size() + 1));

@@ -47,8 +47,8 @@ public class ContactDataGenerator {
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
       writer.write(String.format("%s; %s; %s; %s; %s; %s; %s \n", contact.getlName(), contact.getfName()
-              , contact.getAddress(), contact.getEmail(), contact.getlPhone(), contact.getCellPhone()
-              , contact.getwPhone()));
+              , contact.getAddress(),contact.getlPhone(), contact.getCellPhone()
+              , contact.getwPhone(),contact.getEmail()));
     }
     writer.close();
 
@@ -57,10 +57,10 @@ public class ContactDataGenerator {
   private static List<ContactData> generatorContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData().withlName(String.format("LastName %s", i)).withfName(String.format("FirstName %s", i))
-              .withAddress(String.format("Address %s", i)).withEmail(String.format("email %s", i))
-              .withlPhone(String.format("HomePhone %s", i)).withCellPhone(String.format("CellPhone %s", i))
-              .withwPhone(String.format("WorkPhone %s", i)));
+      contacts.add(new ContactData().withlName(String.format("Anna %s", i)).withfName(String.format("Marcos %s", i))
+              .withAddress(String.format("25803 Anderson ln %s", i)).withlPhone(String.format("818-430-6300 %s", i))
+              .withCellPhone(String.format("818-430-63-01 %s", i)).withwPhone(String.format("818-430-6302 %s", i))
+              .withEmail(String.format("annasilantyeva@gmail.com %s", i)));
     }
     return contacts;
   }
