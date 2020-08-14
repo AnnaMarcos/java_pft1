@@ -35,7 +35,7 @@ public class GroupCreationTest extends TestBase {
   }
 
   @DataProvider
-  public Iterator<Object[]>validGroupsXML() throws IOException {
+  public Iterator<Object[]>validGroupsFromXML() throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
     String xml = "";
     String line = reader.readLine();
@@ -49,9 +49,23 @@ public class GroupCreationTest extends TestBase {
     List <GroupData> groups = (List<GroupData>) xStream.fromXML(xml);
     return groups.stream().map((g) -> new Object[] {g}).collect (Collectors.toList()).iterator();
   }
+  @DataProvider
+  public Iterator<Object[]>validGroupsFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
+    String json = "";
+    String line = reader.readLine();
+    while (line != null) {
+      String []split =  line.split(";");
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List <GroupData> groups =  gson.fromJson(json, new TypeToken<List<GroupData>>(){}.getType());
+    return groups.stream().map((g) -> new Object[] {g}).collect (Collectors.toList()).iterator();
+  }
 
 
-  @Test (dataProvider = "validGroupsXML")
+  @Test (dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) throws Exception {
       app.goTo().groupPage();
       Groups before = app.group().all();
