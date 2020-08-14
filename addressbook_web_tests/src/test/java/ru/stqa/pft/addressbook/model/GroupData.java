@@ -11,7 +11,6 @@ import java.util.Objects;
   public class GroupData {
   @XStreamOmitField
 
-
   private  int id = Integer.MAX_VALUE;;
   @Expose
   private  String name;

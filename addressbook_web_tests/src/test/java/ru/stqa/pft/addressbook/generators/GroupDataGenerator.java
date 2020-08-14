@@ -25,6 +25,9 @@ public class GroupDataGenerator  {
   @Parameter (names = "-f", description = "Target file" )
   public String file;
 
+  @Parameter (names = "-d", description = "Data format" )
+  public String format;
+
 
 
   public static void main(String[] args) throws IOException {
@@ -42,11 +45,26 @@ public class GroupDataGenerator  {
 
   private void run() throws IOException {
     List<GroupData> groups  = generatorGroups(count);
-    save(groups, new File(file));
-
+    if (format.equals("csv")) {
+      saveAsCsv(groups, new File(file));
+    }else if  (format.equals("xml")){
+      saveAsXml(groups, new File(file));
+    }else{
+      System.out.println("Unrecognized format " + format);
+    }
   }
 
-  private static void save(List<GroupData> groups, File file) throws IOException {
+  private void saveAsXml(List<GroupData> groups, File file) throws IOException {
+    XStream xStream = new XStream();
+    xStream.processAnnotations(GroupData.class);
+   // xStream.alias("group",GroupData.class);//customization tags view
+    String xml = xStream.toXML(groups);
+    Writer writer = new FileWriter(file);
+    writer.write(xml);
+    writer.close();
+  }
+
+  private static void  saveAsCsv(List<GroupData> groups, File file) throws IOException {
     Writer writer = new FileWriter(file);
     for (GroupData group : groups) {
       writer.write(String.format("%s; %s; %s;  \n", group.getName(), group.getHeader(), group.getFooter()));

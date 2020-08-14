@@ -145,9 +145,14 @@ public class ContactHelper extends HelperBase {
       String  address = cells.get(3).getText();
       String allEmails = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
+      String lPhone = cells.get(6).getText();
+      String cellPhone = cells.get(7).getText();
+      String wPhone = cells.get(8).getText();
+
 
       ContactData contact = new ContactData().withId(id).withfName(fName).withlName(lName)
-              .withAddress(address).withallPhones(allPhones).withAllEmails(allEmails);
+              .withAddress(address).withallPhones(allPhones).withAllEmails(allEmails).withlPhone(lPhone)
+              .withCellPhone(cellPhone).withwPhone(wPhone);
       contactCache.add(contact);
     }
     return new Contacts(contactCache);
