@@ -60,10 +60,9 @@ public class ContactDataGenerator {
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
-
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
@@ -71,22 +70,22 @@ public class ContactDataGenerator {
     xStream.processAnnotations(ContactData.class);
    // xStream.alias("contact",ContactData.class);//customization tags view
     String xml = xStream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
 
 
   private static void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
-    Writer writer = new FileWriter(file);
+    System.out.println(new File(".").getAbsolutePath());
+    try (Writer writer = new FileWriter(file)) {
     for (ContactData contact : contacts) {
       writer.write(String.format("%s; %s; %s; %s; %s; %s; %s\n", contact.getlName(), contact.getfName()
-              , contact.getAddress(),contact.getlPhone(), contact.getCellPhone()
-              , contact.getwPhone(),contact.getEmail()));
+              , contact.getAddress(), contact.getlPhone(), contact.getCellPhone()
+              , contact.getwPhone(), contact.getEmail()));
     }
-    writer.close();
-
+  }
   }
 
   private static List<ContactData> generatorContacts(int count) {
@@ -95,7 +94,7 @@ public class ContactDataGenerator {
       contacts.add(new ContactData().withlName(String.format("Anna %s", i)).withfName(String.format("Marcos %s", i))
               .withAddress(String.format("25803_Anderson ln %s", i)).withlPhone(String.format("818-430-6300 %s", i))
               .withCellPhone(String.format("818-430-63-01 %s", i)).withwPhone(String.format("818-430-6302 %s", i))
-              .withEmail(String.format("annasilantyeva@gmail.com %s", i)));
+              .withEmail(String.format("annasilantyeva@gmail.com%s", i)));
     }
     return contacts;
   }
