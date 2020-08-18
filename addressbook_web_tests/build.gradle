@@ -17,3 +17,16 @@ repositories {
 
     implementation 'com.google.code.gson:gson:2.8.6'
   }
+
+
+task testGroups(type:Test) {
+  useTestNG {
+    suites 'src/test/resources/testing_groups.xml'
+  }
+}
+
+   task testContacts(type: Test) {
+     useTestNG {
+       suites 'src/test/resources/testing_contacts.xml'
+     }
+   }
