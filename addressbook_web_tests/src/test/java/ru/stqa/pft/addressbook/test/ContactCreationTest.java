@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -81,10 +83,12 @@ public class ContactCreationTest extends TestBase {
 
     @Test (enabled = false)
     public void testCurrentDir(){
+      logger.info("Start test testGroupCreation");
       File currentDir = new File(".");
       System.out.println(currentDir.getAbsolutePath());
       File photo = new File("src/test/resources/cat.jpg");
       System.out.println(photo.getAbsolutePath());
       System.out.println(photo.exists());
+      logger.info("Start test testGroupCreation");
     }
   }

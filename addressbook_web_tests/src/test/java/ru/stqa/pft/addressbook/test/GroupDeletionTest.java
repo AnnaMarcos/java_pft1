@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.test;
 import com.google.common.base.Predicates;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -35,7 +37,6 @@ public class GroupDeletionTest extends TestBase {
     assertThat(app.group().count(), equalTo(before.size() -1));
     Groups after = app.group().all();
     assertThat(after, equalTo(before.without(deletedGroup)));
-
     }
 
 }
